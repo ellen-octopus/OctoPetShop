@@ -4,9 +4,19 @@ step "run-a-script" {
     action {
         action_type = "Octopus.Script"
         properties = {
-            Octopus.Action.GitRepository.Source = "Project"
-            Octopus.Action.Script.ScriptFileName = "k8s/*.yaml"
-            Octopus.Action.Script.ScriptSource = "GitRepository"
+            Octopus.Action.Script.ScriptBody = <<-EOT
+                # basic-print.ps1
+                Write-Host "Starting script..."
+                Write-Host "Running setup..."
+                Write-Host "Checking system status..."
+                Write-Host "System OK."
+                Write-Host "Deploying changes..."
+                Write-Host "Deployment complete."
+                Write-Host "Script finished."
+                
+                EOT
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
             OctopusUseBundledTooling = "False"
         }
         worker_pool = "hosted-ubuntu"
@@ -28,6 +38,7 @@ step "deploy-a-package" {
             Octopus.Action.Package.DownloadOnTentacle = "False"
             Octopus.Action.Package.FeedId = "octopus-server-built-in"
             Octopus.Action.Package.PackageId = "sample-package"
+            Octopus.Action.RunOnServer = "false"
         }
         worker_pool_variable = ""
 
