@@ -9,7 +9,7 @@ step "deploy-kubernetes-yaml" {
         properties = {
             Octopus.Action.GitRepository.FilePathFilters = "k8s/*"
             Octopus.Action.GitRepository.Source = "Project"
-            Octopus.Action.Kubernetes.DeploymentTimeout = "180"
+            Octopus.Action.Kubernetes.DeploymentTimeout = "600"
             Octopus.Action.Kubernetes.ResourceStatusCheck = "True"
             Octopus.Action.Kubernetes.ServerSideApply.Enabled = "True"
             Octopus.Action.Kubernetes.ServerSideApply.ForceConflicts = "True"
