@@ -1,7 +1,7 @@
 step "deploy-kubernetes-yaml" {
     name = "Deploy Kubernetes YAML"
     properties = {
-        Octopus.Action.TargetRoles = "dev-cluster"
+        Octopus.Action.TargetRoles = "cluster-dev-test,cluster-staging"
     }
 
     action {
